@@ -8,6 +8,8 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -21,4 +23,10 @@ jobs:
         uses: pre-commit/action@v3.0.0
 
       - name: Build project
-        run: ./gradlew clean build
+        run: ./gradlew jmh
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/reports/jmh
