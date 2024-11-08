@@ -1,0 +1,29 @@
+plugins {
+    id "idea"
+    id "java"
+    id "me.champeau.jmh" version "0.7.2"
+}
+
+ext {
+    lombokVersion = "1.18.34"
+}
+
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+}
+
+jmh {
+    jvmArgs = ["-Xms6g", "-Xmx6g"]
+}
