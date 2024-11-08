@@ -2,6 +2,7 @@ plugins {
     id "idea"
     id "java"
     id "me.champeau.jmh" version "0.7.2"
+    id "io.morethan.jmhreport" version "0.9.6"
 }
 
 ext {
@@ -26,4 +27,19 @@ dependencies {
 
 jmh {
     jvmArgs = ["-Xms6g", "-Xmx6g"]
+    resultFormat = "JSON"
+}
+
+tasks.jmh.finalizedBy tasks.jmhReport
+
+jmhReport {
+    jmhResultPath = "build/results/jmh/results.json"
+    jmhReportOutput = "build/reports/jmh"
+}
+
+tasks.jmhReport.doFirst {
+    copy {
+        from "assets/"
+        into "build/reports/jmh"
+    }
 }
