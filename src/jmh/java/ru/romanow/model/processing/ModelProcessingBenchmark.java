@@ -26,8 +26,8 @@ public class ModelProcessingBenchmark {
     @Benchmark
     @BenchmarkMode(Mode.Throughput)
     @Warmup(iterations = 0)
-    @Fork(value = 1, warmups = 0)
-    @Measurement(iterations = 3)
+    @Fork(value = 3, warmups = 0)
+    @Measurement(iterations = 5)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public List<ProductScenarioModel> benchmarkSingleThreadProcessing() {
         return entities
@@ -39,8 +39,8 @@ public class ModelProcessingBenchmark {
     @Benchmark
     @BenchmarkMode(Mode.Throughput)
     @Warmup(iterations = 0)
-    @Fork(value = 1, warmups = 0)
-    @Measurement(iterations = 3)
+    @Fork(value = 3, warmups = 0)
+    @Measurement(iterations = 5)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public List<ProductScenarioModel> benchmarkParallelProcessing() {
         return entities
